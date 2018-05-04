@@ -16,13 +16,18 @@ https://wordpress.org/plugins/coming2live/
 		<link rel="stylesheet" type="text/css" href="assets/fonts/fontawesome/font-awesome.min.css">
 		<!-- Vendors-->
 		<link rel="stylesheet" type="text/css" href="assets/vendors/bootstrap/grid.css">
-		<link rel="stylesheet" type="text/css" href="assets/vendors/YTPlayer/css/jquery.mb.YTPlayer.min.css">
-		<link rel="stylesheet" type="text/css" href="assets/vendors/vegas/vegas.min.css">
 		<!-- App & fonts-->
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Work+Sans:300,400,500,700">
 		<link rel="stylesheet" type="text/css" id="app-stylesheet" href="assets/css/main.css"><!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 		<![endif]-->
+		<style>
+			.header__left > span + span:before {
+			    content: '|';
+			    display: inline-block;
+			    margin: 0 10px;
+			}
+		</style>
 	</head>
 	
 	<body>
@@ -31,12 +36,11 @@ https://wordpress.org/plugins/coming2live/
 			<div class="md-content">
 				
 				<!-- hero -->
-				<div class="hero md-skin-dark">
-					<div id="fss-bg"></div>
+				<div class="hero md-skin-dark no-overlay">
 					
 					<!-- header -->
 					<div class="header">
-						<div class="header__left" style="display: block"><span>Qingdao, China</span><span>+86-186-681-LEVIA</span><span>hsin@levia.xyz</span>
+						<div class="header__left pull-right" style="display: block; font-size: calc(0.7vw + 0.9rem);"><span>Qingdao, China</span><span>+86-186-681-LEVIA</span><span>hsin@levia.xyz</span>
 						</div>
 						<div class="header__social" style="display: none;">
 							
@@ -108,19 +112,40 @@ https://wordpress.org/plugins/coming2live/
 					</div>
 				</div><!-- End / hero -->
 				
+				
+				<!-- quietflow -->
+				<div class="quietflow">
+				</div><!-- End / quietflow -->
+				
 			</div>
 			<!-- End / Content-->
 		</div>
 		<!-- Vendors-->
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script type="text/javascript" src="assets/vendors/jquery.countdown/jquery.countdown.min.js"></script>
-		<script type="text/javascript" src="assets/vendors/flat-surface-shader/fss.min.js"></script>
-		<script type="text/javascript" src="assets/vendors/particles.js/particles.js"></script>
-		<script type="text/javascript" src="assets/vendors/waterpipe/waterpipe.js"></script>
 		<script type="text/javascript" src="assets/vendors/quietflow/quietflow.min.js"></script>
-		<script type="text/javascript" src="assets/vendors/YTPlayer/jquery.mb.YTPlayer.min.js"></script>
-		<script type="text/javascript" src="assets/vendors/vegas/vegas.min.js"></script>
-		<!-- App-->
-		<script type="text/javascript" src="assets/js/main.js"></script>
+		<script>
+			(function ($) {
+				var optDefault = {
+					theme: "bouncingBalls",
+					specificColors: ["rgba(255, 214, 108, .5)", "rgba(192, 55, 23, .5)", "rgba(255, 153, 53, .5)", "rgba(141, 16, 12, .5)", "rgba(53, 71, 45, .5)"],
+					backgroundCol: "#333"
+				};
+				$("body").quietflow(optDefault);
+
+				/**
+				* Countdown
+				*/
+				$('.countdown__module').each(function () {
+					var self = $(this),
+						    _date = self.attr('data-date'),
+						    _strf = self.html();
+						self.countdown(_date, function (event) {
+						self.html(event.strftime(_strf));
+					}).removeClass("hide");
+				});
+			})(jQuery);
+				
+		</script>
 	</body>
 </html>

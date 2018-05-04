@@ -643,14 +643,14 @@
 		particlesJS("particles-js", _particles_effect);
 	}
 	if ($('.quietflow').length) {
-		var optData = eval('(' + $('.quietflow').attr('data-options') + ')'),
-			    optDefault = {
+		// var optData = eval('(' + $('.quietflow').attr('data-options') + ')'),
+		var optDefault = {
 			theme: "bouncingBalls",
 			specificColors: ["rgba(255, 214, 108, .5)", "rgba(192, 55, 23, .5)", "rgba(255, 153, 53, .5)", "rgba(141, 16, 12, .5)", "rgba(53, 71, 45, .5)"],
 			backgroundCol: "#333"
-		},
-			    options = $.extend(optDefault, optData);
-		$("body").quietflow(options);
+		};
+			    // options = $.extend(optDefault, optData);
+		$(".md-content").quietflow(optDefault);
 	}
 	if ($('.ribbons-bg').length) {
 		new Ribbons({
